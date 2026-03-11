@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BADCURT — Кёрт, я тебя люблю тур / Часть 1</title>
+  <meta property="og:title" content="BADCURT — Кёрт, я тебя люблю тур">
+  <meta property="og:description" content="Официальная страница тура BADCURT «Кёрт, я тебя люблю» — билеты и встречи">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050a0a;
+      --accent: #1de9b6;
+      --accent-dark: #0a6e55;
+      --text: #e8e8e8;
+      --text-dim: #8a9a9a;
+      --card-bg: rgba(10, 30, 28, 0.6);
+      --card-border: rgba(29, 233, 182, 0.15);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Montserrat', Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== NOISE OVERLAY (like tritia.ru) ===== */
+    .noise {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 30%, rgba(29, 233, 182, 0.08) 0%, transparent 60%),
+                  var(--bg);
+    }
+
+    .hero__poster {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+      width: 90%;
+      border-radius: 4px;
+      box-shadow: 0 0 80px rgba(29, 233, 182, 0.12), 0 0 200px rgba(29, 233, 182, 0.05);
+    }
+
+    .hero__poster img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .hero__glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(29, 233, 182, 0.10) 0%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: bounce 2s ease-in-out infinite;
+      text-decoration: none;
+    }
+
+    .hero__scroll span {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero__scroll svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 2;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* ===== TOUR SECTION ===== */
+    .tour {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px 100px;
+    }
+
+    .tour__title {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 50px;
+    }
+
+    /* ===== CITY ROW ===== */
+    .city {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--card-border);
+      transition: background 0.3s;
+    }
+
+    .city:first-child {
+      border-top: 1px solid var(--card-border);
+    }
+
+    .city:hover {
+      background: rgba(29, 233, 182, 0.03);
+    }
+
+    .city__info {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .city__date {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+      min-width: 110px;
+    }
+
+    .city__name {
+      font-size: 22px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .city__venue {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .city__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      margin-left: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn--tickets {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .btn--tickets:hover {
+      background: #4af5ce;
+      box-shadow: 0 0 20px rgba(29, 233, 182, 0.4);
+    }
+
+    .btn--meet {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .btn--meet:hover {
+      background: rgba(29, 233, 182, 0.1);
+      box-shadow: 0 0 20px rgba(29, 233, 182, 0.2);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      padding: 40px 20px 60px;
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: auto;
+        padding: 40px 0 0;
+      }
+
+      .hero__poster {
+        max-width: 95%;
+      }
+
+      .hero__scroll {
+        position: relative;
+        bottom: auto;
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+
+      .tour {
+        padding: 40px 16px 80px;
+      }
+
+      .city {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 20px 0;
+      }
+
+      .city__info {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .city__date {
+        font-size: 13px;
+      }
+
+      .city__name {
+        font-size: 20px;
+      }
+
+      .city__actions {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .btn {
+        flex: 1;
+        padding: 12px 16px;
+        font-size: 13px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .city__name {
+        font-size: 17px;
+      }
+
+      .btn {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero__glow"></div>
+  <div class="hero__poster">
+    <!-- Замените путь на реальное изображение постера -->
+    <img src="poster.jpg" alt="BADCURT — Кёрт, я тебя люблю тур / Часть 1">
+  </div>
+  <a href="#tour" class="hero__scroll">
+    <span>Даты тура</span>
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </a>
+</section>
+
+<!-- ===== TOUR DATES ===== -->
+<section class="tour" id="tour">
+  <div class="tour__title">Кёрт, я тебя люблю тур / Часть 1 &nbsp;·&nbsp; Support: Хайпер</div>
+
+  <!-- 20 МАРТА — ТВЕРЬ -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">20 марта</span>
+      <span class="city__name">Тверь</span>
+      <span class="city__venue">Собака Милле</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://tver.qtickets.events/220200-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_tver" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 21 МАРТА — ВОЛОГДА -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">21 марта</span>
+      <span class="city__name">Вологда</span>
+      <span class="city__venue">Огни Сухоны</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://vologda.qtickets.events/220377-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_vologda" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 22 МАРТА — ЯРОСЛАВЛЬ -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">22 марта</span>
+      <span class="city__name">Ярославль</span>
+      <span class="city__venue">Дажо Да</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://yaroslavl.qtickets.events/220380-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_yaroslavl" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 27 МАРТА — АЛЬМЕТЬЕВСК -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">27 марта</span>
+      <span class="city__name">Альметьевск</span>
+      <span class="city__venue">Lockdown</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://vk.cc/cViXn3" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://t.me/spacesbooking" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 28 МАРТА — КАЗАНЬ -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">28 марта</span>
+      <span class="city__name">Казань</span>
+      <span class="city__venue">Bazzar</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://vk.cc/cViXee" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://t.me/spacesbooking" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 29 МАРТА — УЛЬЯНОВСК -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">29 марта</span>
+      <span class="city__name">Ульяновск</span>
+      <span class="city__venue">Шипр</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://ulyanovsk.qtickets.events/220391-badcurt-v-ulyanovske" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_ylyanovsk" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 3 АПРЕЛЯ — ВОЛГОГРАД -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">3 апреля</span>
+      <span class="city__name">Волгоград</span>
+      <span class="city__venue">Harat's Pub</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://volgograd.qtickets.events/220410-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_volgograd" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 4 АПРЕЛЯ — КРАСНОДАР -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">4 апреля</span>
+      <span class="city__name">Краснодар</span>
+      <span class="city__venue">Счастье</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://krasnodar.qtickets.events/220412-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_krasnodar" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 5 АПРЕЛЯ — СТАВРОПОЛЬ -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">5 апреля</span>
+      <span class="city__name">Ставрополь</span>
+      <span class="city__venue">Rock Bar</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://stavropol.qtickets.events/220414-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_stavropol" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 10 АПРЕЛЯ — ТЮМЕНЬ -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">10 апреля</span>
+      <span class="city__name">Тюмень</span>
+      <span class="city__venue">Руки Вверх!</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://tumen.qtickets.events/220854-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_tyumen" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 11 АПРЕЛЯ — ЕКАТЕРИНБУРГ -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">11 апреля</span>
+      <span class="city__name">Екатеринбург</span>
+      <span class="city__venue">Руки Вверх!</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://ekb.qtickets.events/220417-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_ekb" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 12 АПРЕЛЯ — ПЕРМЬ -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">12 апреля</span>
+      <span class="city__name">Пермь</span>
+      <span class="city__venue">Руки Вверх!</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://perm.qtickets.events/220855-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_perm" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 24 АПРЕЛЯ — ОРЕНБУРГ -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">24 апреля</span>
+      <span class="city__name">Оренбург</span>
+      <span class="city__venue">Long Way</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://orenburg.qtickets.events/220418-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_orenburg" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 25 АПРЕЛЯ — УФА -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">25 апреля</span>
+      <span class="city__name">Уфа</span>
+      <span class="city__venue">Пивбургер</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://ufa.qtickets.events/220857-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_ufa" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+  <!-- 26 АПРЕЛЯ — ЧЕЛЯБИНСК -->
+  <div class="city">
+    <div class="city__info">
+      <span class="city__date">26 апреля</span>
+      <span class="city__name">Челябинск</span>
+      <span class="city__venue">Tarantinoz</span>
+    </div>
+    <div class="city__actions">
+      <a href="https://chelyabinsk.qtickets.events/220863-badcurt" class="btn btn--tickets" target="_blank">Билеты</a>
+      <a href="https://vk.com/badcurt_chelyabinsk" class="btn btn--meet" target="_blank">Встреча</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  BADCURT &copy; 2025 &nbsp;·&nbsp; Организатор: <a href="#">Secret</a>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
