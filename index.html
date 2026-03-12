@@ -17,7 +17,7 @@
     }
 
     :root {
-      --bg: #050a0a;
+      --bg: #000000;
       --accent: #1de9b6;
       --accent-dark: #0a6e55;
       --text: #e8e8e8;
@@ -27,14 +27,13 @@
     }
 
     body {
-      background: var(--bg);
+      background: #000000;
       color: var(--text);
       font-family: 'Montserrat', Arial, sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    
     .noise {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -47,7 +46,6 @@
       background-size: 200px;
     }
 
-    
     .hero {
       position: relative;
       width: 100%;
@@ -57,8 +55,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background: radial-gradient(ellipse at 50% 30%, rgba(29, 233, 182, 0.08) 0%, transparent 60%),
-                  var(--bg);
+      background: #000000;
     }
 
     .hero__poster {
@@ -67,7 +64,7 @@
       max-width: 620px;
       width: 90%;
       border-radius: 4px;
-      box-shadow: 0 0 80px rgba(29, 233, 182, 0.12), 0 0 200px rgba(29, 233, 182, 0.05);
+      box-shadow: none;
     }
 
     .hero__poster img {
@@ -75,18 +72,6 @@
       height: auto;
       display: block;
       border-radius: 4px;
-    }
-
-    .hero__glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(29, 233, 182, 0.10) 0%, transparent 70%);
-      z-index: 1;
-      pointer-events: none;
     }
 
     .hero__scroll {
@@ -124,7 +109,6 @@
       50% { transform: translateX(-50%) translateY(10px); }
     }
 
-   
     .tour {
       position: relative;
       z-index: 2;
@@ -143,7 +127,6 @@
       margin-bottom: 50px;
     }
 
-   
     .city {
       display: flex;
       align-items: center;
@@ -241,7 +224,6 @@
       box-shadow: 0 0 20px rgba(29, 233, 182, 0.2);
     }
 
-   
     .footer {
       text-align: center;
       padding: 40px 20px 60px;
@@ -255,7 +237,6 @@
       text-decoration: none;
     }
 
-   
     @media (max-width: 768px) {
       .hero {
         min-height: auto;
@@ -326,11 +307,8 @@
 
 <div class="noise"></div>
 
-
 <section class="hero">
-  <div class="hero__glow"></div>
   <div class="hero__poster">
-    
     <img src="poster1.png" alt="BADCURT — Кёрт, я тебя люблю тур / Часть 1">
   </div>
   <a href="#tour" class="hero__scroll">
@@ -339,11 +317,9 @@
   </a>
 </section>
 
-
 <section class="tour" id="tour">
   <div class="tour__title">Кёрт, я тебя люблю тур / Часть 1 
 
-  
   <div class="city">
     <div class="city__info">
       <span class="city__date">20 марта</span>
@@ -356,7 +332,6 @@
     </div>
   </div>
 
-  
   <div class="city">
     <div class="city__info">
       <span class="city__date">21 марта</span>
@@ -369,7 +344,6 @@
     </div>
   </div>
 
- 
   <div class="city">
     <div class="city__info">
       <span class="city__date">22 марта</span>
@@ -382,7 +356,6 @@
     </div>
   </div>
 
- 
   <div class="city">
     <div class="city__info">
       <span class="city__date">27 марта</span>
@@ -395,7 +368,6 @@
     </div>
   </div>
 
-  
   <div class="city">
     <div class="city__info">
       <span class="city__date">28 марта</span>
@@ -407,7 +379,6 @@
       <a href="https://t.me/spacesbooking" class="btn btn--meet" target="_blank">Встреча</a>
     </div>
   </div>
-
 
   <div class="city">
     <div class="city__info">
@@ -421,7 +392,6 @@
     </div>
   </div>
 
-  
   <div class="city">
     <div class="city__info">
       <span class="city__date">3 апреля</span>
@@ -433,7 +403,6 @@
       <a href="https://vk.com/badcurt_volgograd" class="btn btn--meet" target="_blank">Встреча</a>
     </div>
   </div>
-
 
   <div class="city">
     <div class="city__info">
@@ -447,7 +416,6 @@
     </div>
   </div>
 
-  
   <div class="city">
     <div class="city__info">
       <span class="city__date">5 апреля</span>
@@ -460,7 +428,6 @@
     </div>
   </div>
 
-  
   <div class="city">
     <div class="city__info">
       <span class="city__date">10 апреля</span>
@@ -472,7 +439,6 @@
       <a href="https://vk.com/badcurt_tyumen" class="btn btn--meet" target="_blank">Встреча</a>
     </div>
   </div>
-
 
   <div class="city">
     <div class="city__info">
@@ -486,7 +452,6 @@
     </div>
   </div>
 
-
   <div class="city">
     <div class="city__info">
       <span class="city__date">12 апреля</span>
@@ -499,7 +464,6 @@
     </div>
   </div>
 
- 
   <div class="city">
     <div class="city__info">
       <span class="city__date">24 апреля</span>
@@ -512,7 +476,6 @@
     </div>
   </div>
 
-  
   <div class="city">
     <div class="city__info">
       <span class="city__date">25 апреля</span>
@@ -525,7 +488,6 @@
     </div>
   </div>
 
-  
   <div class="city">
     <div class="city__info">
       <span class="city__date">26 апреля</span>
@@ -540,13 +502,11 @@
 
 </section>
 
-
 <footer class="footer">
   BADCURT &copy; 2025 &nbsp;·&nbsp; Организатор: <a href="#">Secret</a>
 </footer>
 
 <script>
-  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
@@ -558,8 +518,3 @@
 
 </body>
 </html>
-
-
-
-
-
