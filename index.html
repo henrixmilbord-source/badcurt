@@ -109,6 +109,11 @@
       50% { transform: translateX(-50%) translateY(10px); }
     }
 
+    @keyframes bounce-mobile {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
     .tour {
       position: relative;
       z-index: 2;
@@ -126,7 +131,6 @@
       transition: background 0.3s;
     }
 
-    
     .city:hover {
       background: rgba(29, 233, 182, 0.03);
     }
@@ -147,6 +151,12 @@
       min-width: 110px;
     }
 
+    .city__name-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .city__name {
       font-size: 22px;
       font-weight: 900;
@@ -157,15 +167,6 @@
       text-overflow: ellipsis;
     }
 
-    .city__venue {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      white-space: nowrap;
-    }
-
     .city__age {
       font-size: 12px;
       font-weight: 700;
@@ -174,7 +175,15 @@
       border: 1px solid var(--text-dim);
       border-radius: 4px;
       padding: 2px 6px;
-      margin-left: 2px;
+    }
+
+    .city__venue {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
     }
 
     .city__actions {
@@ -248,16 +257,11 @@
       .hero__scroll {
         position: relative;
         bottom: auto;
-        left: auto;            
-        transform: none;       
+        left: auto;
+        transform: none;
         margin-top: -70px;
         margin-bottom: 10px;
-        animation: bounce-mobile 2s ease-in-out infinite;  
-      }
-
-      @keyframes bounce-mobile {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(10px); }
+        animation: bounce-mobile 2s ease-in-out infinite;
       }
 
       .tour {
@@ -328,8 +332,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">20 марта</span>
-      <span class="city__name">Тверь</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Тверь</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Собака Милле</span>
     </div>
     <div class="city__actions">
@@ -341,8 +347,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">21 марта</span>
-      <span class="city__name">Вологда</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Вологда</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Огни Сухоны</span>
     </div>
     <div class="city__actions">
@@ -354,8 +362,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">22 марта</span>
-      <span class="city__name">Ярославль</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Ярославль</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Дажо Да</span>
     </div>
     <div class="city__actions">
@@ -367,8 +377,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">27 марта</span>
-      <span class="city__name">Альметьевск</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Альметьевск</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Lockdown</span>
     </div>
     <div class="city__actions">
@@ -380,8 +392,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">28 марта</span>
-      <span class="city__name">Казань</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Казань</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Bazzar</span>
     </div>
     <div class="city__actions">
@@ -393,8 +407,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">29 марта</span>
-      <span class="city__name">Ульяновск</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Ульяновск</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Шипр</span>
     </div>
     <div class="city__actions">
@@ -406,8 +422,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">3 апреля</span>
-      <span class="city__name">Волгоград</span>
-      <span class="city__age">16+</span>
+      <div class="city__name-row">
+        <span class="city__name">Волгоград</span>
+        <span class="city__age">16+</span>
+      </div>
       <span class="city__venue">Harat's Pub</span>
     </div>
     <div class="city__actions">
@@ -419,8 +437,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">4 апреля</span>
-      <span class="city__name">Краснодар</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Краснодар</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Счастье</span>
     </div>
     <div class="city__actions">
@@ -432,8 +452,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">5 апреля</span>
-      <span class="city__name">Ставрополь</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Ставрополь</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Rock Bar</span>
     </div>
     <div class="city__actions">
@@ -445,8 +467,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">10 апреля</span>
-      <span class="city__name">Тюмень</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Тюмень</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Руки Вверх!</span>
     </div>
     <div class="city__actions">
@@ -458,8 +482,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">11 апреля</span>
-      <span class="city__name">Екатеринбург</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Екатеринбург</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Руки Вверх!</span>
     </div>
     <div class="city__actions">
@@ -471,8 +497,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">12 апреля</span>
-      <span class="city__name">Пермь</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Пермь</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Руки Вверх!</span>
     </div>
     <div class="city__actions">
@@ -484,8 +512,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">24 апреля</span>
-      <span class="city__name">Оренбург</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Оренбург</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Long Way</span>
     </div>
     <div class="city__actions">
@@ -497,8 +527,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">25 апреля</span>
-      <span class="city__name">Уфа</span>
-      <span class="city__age">14+</span>
+      <div class="city__name-row">
+        <span class="city__name">Уфа</span>
+        <span class="city__age">14+</span>
+      </div>
       <span class="city__venue">Пивбургер</span>
     </div>
     <div class="city__actions">
@@ -510,8 +542,10 @@
   <div class="city">
     <div class="city__info">
       <span class="city__date">26 апреля</span>
-      <span class="city__name">Челябинск</span>
-      <span class="city__age">16+</span>
+      <div class="city__name-row">
+        <span class="city__name">Челябинск</span>
+        <span class="city__age">16+</span>
+      </div>
       <span class="city__venue">Tarantinoz</span>
     </div>
     <div class="city__actions">
@@ -538,20 +572,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
